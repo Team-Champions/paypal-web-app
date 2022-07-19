@@ -17,7 +17,7 @@ node{
     //sh "${MHD}/bin/mvn deploy"
     }
     stage('6.Deploy2Stage'){
-    sshagent(['32d5fb4f-d92f-4a10-9f12-2738eab55fcc']) {
+    sshagent(['tomcat']) {
     sh "scp -o StrictHostKeyChecking=no target/*war ec2-user@3.98.141.87:/opt/tomcat9/webapps/app"
 }
     
@@ -29,7 +29,7 @@ node{
     
     }
     stage('8.deployToProd'){
-    sshagent(['32d5fb4f-d92f-4a10-9f12-2738eab55fcc']) {
+    sshagent(['tomcat']) {
     sh "scp -o StrictHostKeyChecking=no target/*war ec2-user@3.98.141.87:/opt/tomcat9/webapps/"
 }
     
